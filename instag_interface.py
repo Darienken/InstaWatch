@@ -1,5 +1,5 @@
 import tkinter as tk
-from instag_bot import get_username_data
+from instag_bot import get_username_data, get_users_by_list
 
 class interface(tk.Frame):
     
@@ -18,3 +18,4 @@ class interface(tk.Frame):
         
         #Button
         tk.Button(self, text="Search",font=("Comic Sans S",14), width=14, height=2, command=lambda:get_username_data(self.username.get())).grid(row="2",column="1")
+        tk.Button(self, text="Get Users",font=("Comic Sans S",14), width=14, height=2, command=lambda:get_users_by_list()).grid(row="3",column="1")
