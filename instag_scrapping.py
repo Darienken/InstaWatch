@@ -1,6 +1,7 @@
 #import os
 from selenium import webdriver
 from selenium.webdriver.remote.webelement import WebElement
+import re
 """
 self.chrome_configs.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 
@@ -33,5 +34,17 @@ class instabot(webdriver.Chrome):
         
         about_user=container_descript.find_element_by_class_name("QGPIr")
         
-        users.update({self.username:[follow_list,about_user.text]})
+        phone_number=self.get_phonenumber(about_user.text)
+        users.update({self.username:[follow_list,about_user.text,phone_number]})
         return users
+    
+    def get_phonenumber(self, text):
+        #raw string "r"method
+        #means that /t <-- things like this are interpreted like normal strings, so everythin is a string
+        phone_pattern=re.compile(r"((\+593|593)? \d{2} \d{3} \d{4}|(\+593|593)?\d{7,10})")
+        phone_number=phone_pattern.finditer(text)
+        phone_numbers=""
+        for number in phone_number:
+            phone_numbers+=f"{number.group()} - "
+        
+        return phone_numbers

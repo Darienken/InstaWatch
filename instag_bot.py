@@ -17,7 +17,8 @@ def get_username_data(username):
             "Publications":follows_list[0],
             "Followers":follows_list[1],
             "Follows":follows_list[2],
-            "About User":users.get(user)[1]
+            "About User":users.get(user)[1],
+            "Phone Number":users.get(user)[2]
             }, ignore_index=True)
         
         user_data_xlsx.to_excel("user_data.xlsx")
@@ -32,7 +33,8 @@ def get_username_data(username):
             "Publications":follows_list[0],
             "Followers":follows_list[1],
             "Follows":follows_list[2],
-            "About User":users.get(user)[1]
+            "About User":users.get(user)[1],
+            "Phone Number":users.get(user)[2]
             }, ignore_index=True)
                 
         user_data_xlsx.to_excel("user_data.xlsx")
@@ -76,7 +78,8 @@ def get_users_by_list():
             "Publications":follows_list[0],
             "Followers":follows_list[1],
             "Follows":follows_list[2],
-            "About User":user_dict.get(user)[1]
+            "About User":user_dict.get(user)[1],
+            "Phone Number":user_dict.get(user)[2]
             }, ignore_index=True)
                 
         user_data_xlsx.to_excel("user_data.xlsx")
@@ -95,7 +98,8 @@ def get_users_by_list():
             "Publications":follows_list[0],
             "Followers":follows_list[1],
             "Follows":follows_list[2],
-            "About User":user_dict.get(user)[1]
+            "About User":user_dict.get(user)[1],
+            "Phone Number":user_dict.get(user)[2]
             }, ignore_index=True)
                 
         user_data_xlsx.to_excel("user_data.xlsx")
