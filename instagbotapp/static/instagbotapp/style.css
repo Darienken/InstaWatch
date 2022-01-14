@@ -1,0 +1,285 @@
+body {
+    width:100%;
+    margin: 0 auto;
+    text-align:center;
+    font-size: 1.28rem;
+    font-family: 'Source Serif 4', sans-serif;
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    text-align: center;
+}
+
+#scrape-form__username-input{
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    outline: none;
+    margin: 1rem 0;
+    font-size: 1.5rem;
+}
+
+.scrape-form__scrape-btn, .scrapelist-form__btn{
+    font-size: 1.7rem;
+    border-radius: 0.5rem;
+    color: #cc0000;
+}
+
+.scrape-form__scrape-btn:hover, .scrapelist-form__btn:hover{
+    cursor:pointer;
+}
+
+.scrapelist-form{
+    margin-top: 2rem;
+}
+
+.userinfo-container{
+    text-align: left;
+    margin: 0 2rem;
+    margin-top: 2rem;
+}
+
+.download-excel{
+    margin-top:1rem;
+}
+
+#scrapelist-form__upload-file{
+    font-size: 1rem;
+    margin: 1rem 0 1rem 3.5rem;
+    width: 15rem
+}
+
+.scrape-form__pcontainer, .scrapelist-form__pcontainer{
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 0.7rem;
+    text-align: center;
+}
+
+.navbar{
+    list-style-type: none;
+    padding:0;
+    margin:0;
+    background-color: #cc0000;
+    overflow:hidden;
+}
+
+.navbar__li{
+    display: inline-block;
+    padding:0.5rem 0 0.5rem 0;
+}
+
+.navbar__aref{
+    color:#1a0000;
+    padding:5rem;
+    font-size:1.68rem
+}
+
+.navbar__li:hover{
+    background-color: #1a0000;
+}
+
+.navbar__aref:hover{
+    color:#6666ff;
+}
+
+.about-container {
+    text-align: justify;
+    margin-left: 4rem;
+    margin-right: 4rem;
+}
+
+.about-container__about {
+    font-size:1.5rem;
+}
+
+.about-container__p{
+    text-align: justify;
+    margin: 0 2rem;
+}
+
+.about-container__topic{
+    text-align: center;
+    margin:0;
+    padding:0;
+    color:red;
+    font-size:1.6rem
+}
+
+.scrapelist-form__phelp{
+    font-size: 1rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.about-container__imguploadlist{
+    margin: 0 auto;
+    display: block;
+}
+
+.contact-us__p{
+    text-align: justify;
+    margin: 0 5rem;
+
+}
+
+.contact-us__form{
+    display:grid;
+    grid-template-columns: 60%;
+    justify-content: center;
+}
+
+.contact-us__form-p{
+    text-align: left;
+}
+
+.contact-us__input{
+    display:block;
+    border:0;
+    background-color: #cc0000;
+    font-size:1.5rem;
+    outline:0;
+    width:100%;
+    height:2.4rem;
+}
+
+.contact-us__label{
+    font-size:1.7rem;
+}
+
+.contact-us__textarea{
+    height:100%;
+}
+
+input[placeholder="Name"]{
+    margin-bottom:0.5rem;
+}
+
+button{
+    font-size:1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.footer{
+    background-color: #cc0000;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.footer__aref{
+    color:#1a0000;
+}
+
+@media (max-width:800px){
+    
+    .navbar{
+        background-color: #cc0000;
+        overflow:hidden;
+    }
+    
+    .navbar__li{
+        display: block;
+        padding:0;
+    }
+    
+    .navbar__aref{
+        color:#001a0d;
+        padding:0;
+        width:100%;
+        display: inline-block;
+    }
+
+    body{
+        font-size: 1.2rem;
+    }
+
+    .contact-us__p{
+        text-align: justify;
+        margin: 0 1.5rem;
+
+    }
+
+    .contact-us__form{
+        display:grid;
+        grid-template-columns: 80%;
+        justify-content: center;
+    }
+
+    .contact-us__form-p{
+        text-align: left;
+    }
+
+    .contact-us__input{
+        display:block;
+        border:0;
+        background-color: #cc0000;
+        font-size:1.5rem;
+        outline:0;
+        width:100%;
+        height:2.4rem;
+    }
+
+    .contact-us__label{
+        font-size:1.7rem;
+    }
+
+    .contact-us__textarea{
+        height:100%;
+    }
+
+    input[placeholder="Name"]{
+        margin-bottom:0.5rem;
+    }
+
+    button{
+        font-size:1.5rem;
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width:709px){
+    .about-container {
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+    }
+}
+
+@media (max-width:451px){
+    .contact-us__input{
+        font-size:1.3rem;
+    }
+}
+
+@media (max-width:351px){
+    #scrape-form__username-input{
+        font-size: 1.5rem;
+    }
+
+    h1{
+        font-size: 1.7rem;
+    }
+
+    .scrape-form__label, .scrapelist-form__label{
+        padding-left: 0;
+        padding-right: 0;
+        font-size:1.2rem;
+    }
+    
+    #scrapelist-form__upload-file{
+        font-size:0.9rem;
+        margin:1rem 0;
+    }
+
+    .contact-us__input{
+        font-size:1.1rem;
+    }
+}

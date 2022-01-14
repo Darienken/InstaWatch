@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>InstaWatch - Help</title>
+    <meta name="description" content="This is the InstaWatch's help center, here you can see how to
+    upload a list of users and how to resolve common errors...">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'instagbotapp/style.css' %}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@300&display=swap');
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="navbar">
+                <li class="navbar__li"><a href="{% url 'search_url' %}" class="navbar__aref">Watch!</a></li>
+                <li class="navbar__li"><a href="{% url 'contact_url' %}" class="navbar__aref">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <div class="about-container">
+                <article id="about-container__whatinstaarticle">
+                <h1>Help center</h1>
+                <p class="about-container__p">
+                    Here you can find the most common questions about InstaWatch.
+                </p>
+                    <div class="about-container__topic about-container__whatinsta">
+                        <br>
+                        <b>¿What is InstaWatch?</b>
+                    </div>
+                    <b>InstaWatch is a tool developed to save time when watching the public information of an Instagram profile.</b>
+                    <br>
+                    Let's say that you want to see the information of a profile, you can do it but you need to follow a set of steps,
+                    and if you want to see the information of 1.000 profiles, then you need to do a lot of work, but InstaWatch can solve this problem...
+                    <br>
+                    this tool can show you the information from more than 1.000 profiles in only 2 steps.
+                    <ol>
+                        <li>enter the instagram username</li>
+                        <li>click on "Watch!" button</li>
+                        <li>see the information.</li>
+                    </ol>
+                    If you want to upload a list of user you must to follow the next steps
+                    <ol>
+                        <li>choose your excel file</li>
+                        <li>click on "Watch list!" button</li>
+                        <li>download your excel list with all the information ready to watch.</li>
+                    </ol>
+                    So Easy! right?
+                    <br>
+                    <br>
+                </article>
+                <article id="how-to-upload">
+                    <div class="about-container__topic about-container__howupload">
+                        <b>¿How to upload an excel lists?</b>
+                    </div>
+                    In this section I'll explain you how to upload an excel list,
+                    <br>
+                    <br>
+                    <b>First</b>, you must to create an excel file, be secure that the extension is <b>.xlsx</b>,                    <br>
+                    <br>
+                    <img src="{% static 'instagbotapp/media/firststep.jpg' %}" alt="instawatch users list excel steps">
+                    <br>
+                    <img src="{% static 'instagbotapp/media/firststepxlsx.jpg' %}" alt="instawatch users list excel steps">
+                    <br>
+                    <br>
+                    <b>Second</b>, you must to write <b>users</b> WITHOUT CAPITAL LETTERS,
+                    <br>
+                    <img src="{% static 'instagbotapp/media/secondstepusers.jpg' %}" alt="instawatch users list excel steps" class="about-container__imguploadlist">
+                    <br>
+                    <br>
+                    under <b>users</b> you must to write usernames that you want to watch
+                    <br>
+                    <img src="{% static 'instagbotapp/media/secondsteponeunder.jpg' %}" alt="instawatch users list excel steps" class="about-container__imguploadlist">
+                    <br>
+                    <br>
+                    this page will search for the "users" word, so if you don't write <b>users</b> the request will not work and you'll have an error,
+                    under users you must to write usernames that you want to watch and you must to write usernames exactly as it appears in Instagram.
+                    <br>
+                    <br>
+                    <b>Finally</b>, if you have any problem or suggestion, <a href="{% url 'contact_url' %}">you can contact us clicking here!</a>
+                    <br>
+                    <br>
+                </article>
+                <article id="sorry-username">
+                    <div class="about-container__topic about-container__sorryusername">
+                        <b>Sorry I coulnd't find that username - ERROR</b>
+                    </div>
+                        ¿Why does this error appear?
+                        <br>
+                        <b>Causes</b>
+                        <br>
+                        -Incorrect Username
+                        <br>
+                        <br>
+                        If you enter an incorrect username the page will show you an error where It says that It couldn't find that
+                        username, if you get that error try checking again your grammar and remember that usernames must to be exactly as they appear in
+                        Instagram, InstaWatch is case-sensivite, what means that It'll check word by word trying to find the exact username.
+                        <br>
+                        <br>
+                </article>
+                <article id="sorry-some-wrong">
+                    <div class="about-container__topic about-container__sorrysomewrong">
+                        <b>Sorry! It looks like something when wrong... - ERROR</b>
+                    </div>
+                        ¿Why does this error appear?
+                        <br>
+                        <b>Causes</b>
+                        <br>
+                        -Wrong list of users<br>
+                        -Wrong list file format<br>
+                        -Could not find the word <b>"users"</b>
+                        <br>
+                        <br>
+                        When you upload your list of users, you must to be secure of three things:
+                        <br>
+                        -Correct usernames<br>
+                        -The word <b>"users"</b> must to be at the top of the usernames<br>
+                        -.xlsx file format<br>
+                        <br>
+                        If you don't know how to do this, please see our tutorial <a href="#how-to-upload">clicking here!</a>.
+                        <br>
+                        <br>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <span class="footer__copyright">&copy; 2021-2021 All rights reserved</span><br>
+        <span class="footer__developed">Developed by <a href="https://webdevsoftdev.herokuapp.com" class="footer__aref">Diego Rodriguez Muniz</a></span>
+    </footer>
+
+</body>
+</html>

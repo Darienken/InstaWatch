@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>InstaWatch - Contact</title>
+    <meta name="description" content="Here you can contact us if you have any questions, suggestions or
+    something to tell us, you can send us a message and we'll reply you as faster as possible...">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'instagbotapp/style.css' %}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@300&display=swap');
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="navbar">
+                <li class="navbar__li"><a href="{% url 'search_url' %}" class="navbar__aref">Watch!</a></li>
+                <li class="navbar__li"><a href="{% url 'help_url' %}" class="navbar__aref">Help Center</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="contact-us">
+            <h1>Contact Us</h1>
+            <p class="contact-us__p">
+                If you have any question, suggestion or something to tell us, you can contact us filling this form, our team will reply you as fast as possible.
+            </p>
+            <form action="" method="post" class="contact-us__form">{% csrf_token %}
+                <p class="contact-us__form-p">
+                    <label for="contact-us__input-name" class="contact-us__label">Name: *</label>
+                    <input type="text" name="contact-us__name-form" id="contact-us__input-name" placeholder="Name" class="contact-us__input" required>
+                    <input type="text" name="contact-us__lastname-form" placeholder="Last Name" class="contact-us__input">
+                </p>
+                
+                <p class="contact-us__form-p">
+                    <label for="contact-us__input-subject" class="contact-us__label">Subject: *</label>
+                    <input type="text" name="contact-us__subject-form" id="contact-us__input-subject" placeholder="Ex: Report a bug" class="contact-us__input" required>
+                </p>
+                
+                <p class="contact-us__form-p">
+                    <label for="contact-us__input-email" class="contact-us__label">Email Address: *</label>
+                    <input type="email" name="contact-us__email-form" id="contact-us__input-email" placeholder="examplename@example.com" class="contact-us__input" required>
+                </p>
+                
+                <p class="contact-us__form-p">
+                    <label for="contact-us__input-phonenumber" class="contact-us__label">Phone Number:</label>
+                    <input type="tel" name="contact-us__phonenumber-form" id="contact-us__input-phonenumber" placeholder="999-999-9999" class="contact-us__input">
+                </p>
+                
+                <p class="contact-us__form-p">
+                    <label for="contact-us__input-message" class="contact-us__label">Message: *</label>
+                    <textarea name="contact-us__message-form" id="contact-us__input-message" cols="30" rows="10" class="contact-us__input contact-us__textarea" required></textarea>
+                </p>
+                
+                <button>Submit</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <span class="footer__copyright">&copy; 2021-2021 All rights reserved InstaWatch</span><br>
+        <span class="footer__developed">Developed by <a href="https://webdevsoftdev.herokuapp.com" class="footer__aref">Diego Rodriguez Muniz</a></span>
+    </footer>
+    
+</body>
+</html>

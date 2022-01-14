@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>InstaWatch - Watch users' public information faster!</title>
+    <meta name="description" content="InstaWatch is a tool developed to save your time, InstaWatch
+    allows you to watch the information from more than 1000 profiles in a single click...">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'instagbotapp/style.css' %}">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@300&display=swap');
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="navbar">
+                <li class="navbar__li"><a href="{% url 'help_url' %}" class="navbar__aref">Help Center</a></li>
+                <li class="navbar__li"><a href="{% url 'contact_url' %}" class="navbar__aref">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    
+    <main>
+        <header>
+            <h1>InstaWatch - Watch user's public information faster!</h1>
+        </header>
+        
+        <form action="" method="get" class="scrape-form">
+            <p class="scrape-form__pcontainer"><label for="scrape-form__username-input" class="scrape-form__label">Start by entering an Instagram username</label><br></p>
+                <input id="scrape-form__username-input" type="text" name="username" placeholder="Instagram Username" autofocus><br>
+            <button type="submit" class="scrape-form__scrape-btn">Watch!</button>
+        </form>
+        
+        <form action="" method="post" enctype="multipart/form-data" class="scrapelist-form">{% csrf_token %}
+            <p class="scrapelist-form__pcontainer"><label for="scrapelist-form__upload-file" class="scrapelist-form__label">If you have a list of users in excel format (.xlsx only) upload it right now!</label><br></p>
+                <div class="scrapelist-form__upload-div">
+                    <input type="file" name="UploadedExcelFile" id="scrapelist-form__upload-file" accept=".xlsx">
+                </div>
+            <button type="submit" class="scrapelist-form__btn">Watch list!</button>
+            <p class="scrapelist-form__phelp">
+                Do you have any question about the excel list?<br>
+                <a href="{% url 'help_url'%}">Click here and get help in our Help Center</a>
+            </p>
+        </form>
+    </main>
+    
+    {% if userdata_list == False %}
+        <br>
+        <b>Sorry!</b> It looks like something when wrong, please <a href="{% url 'help_url' %}#sorry-some-wrong">get help clicking here</a> or <a href="{% url 'contact_url' %}">contact us</a>
+        <br>
+        <br>
+    
+    {% elif userdata_list.verifications %}
+        <div class="download-excel">
+            <a href="{% static 'instagbotapp/excel_files/user_data.xlsx' %}" download>
+                Download excel list
+            </a>
+            <br>
+            <br>
+        </div>
+    {% endif %}
+    
+    {% if userdata == False %}
+        <br>
+        <b>Sorry!</b> I couldn't find that username. Please try again or <a href="{% url 'help_url' %}#sorry-username">get help clicking here</a>
+        <br>
+        <br>
+
+    {% elif userdata.Username %}
+        <br>Success!
+        Here is the information that you request
+        <div class="userinfo-container">
+                <b class="userinfo-container__info userinfo-container__username">Username: </b>{{ userdata.Username }}<br><br>
+                <b class="userinfo-container__info userinfo-container__publications">Posts: </b>{{ userdata.Publications }}<br><br>
+                <b class="userinfo-container__info userinfo-container__followers">Followers: </b>{{ userdata.Followers }}<br><br>
+                <b class="userinfo-container__info userinfo-container__followers">Following: </b>{{ userdata.Follows }}<br><br>
+                <b class="userinfo-container__info userinfo-container__about">Description: </b>{{ userdata.AboutUser }}<br><br>
+                <b class="userinfo-container__info userinfo-container__phone">Phone Number: </b>{{ userdata.PhoneNumber }}
+                <br>
+                <br>
+            </div>
+    {% endif %}
+
+    <footer class="footer">
+        <span class="footer__copyright">&copy; 2021-2021 All rights reserved InstaWatch</span><br>
+        <span class="footer__developed">Developed by <a href="https://webdevsoftdev.herokuapp.com" class="footer__aref">Diego Rodriguez Muniz</a></span>
+    </footer>
+
+</body>
+</html>
