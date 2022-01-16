@@ -14,11 +14,10 @@ def search_user(request):
             dict_context.update({"userdata_list":False})
     
     elif "username" in request.GET:
-        try:
-            context_userdata=instag_bot.get_username_data(request.GET.get("username"))
-            dict_context.update({"userdata":context_userdata})
-        except:
-            dict_context.update({"userdata":False})
+        context_userdata=instag_bot.get_username_data(request.GET.get("username"))
+        dict_context.update({"userdata":context_userdata})
+        """except:
+        dict_context.update({"userdata":False})"""
     
     return render(request, "instagbotapp/search_interface.html", dict_context)
 
