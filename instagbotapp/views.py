@@ -6,20 +6,23 @@ def search_user(request):
     dict_context={}
     
     if request.method == "POST":
-        try:
-            excel=request.FILES["UploadedExcelFile"]
-            context_userlist=instag_bot.get_users_by_list(excel)
-            dict_context.update({"userdata_list":context_userlist})
-        except:
-            dict_context.update({"userdata_list":False})
+        excel=request.FILES["UploadedExcelFile"]
+        context_userlist=instag_bot.get_users_by_list(excel)
+        dict_context.update({"userdata_list":context_userlist})
+
     
     elif "username" in request.GET:
         context_userdata=instag_bot.get_username_data(request.GET.get("username"))
         dict_context.update({"userdata":context_userdata})
-        """except:
-        dict_context.update({"userdata":False})"""
+
     
     return render(request, "instagbotapp/search_interface.html", dict_context)
+
+"""except:
+dict_context.update({"userdata_list":False})"""
+
+"""except:
+dict_context.update({"userdata":False})"""
 
 def help(request):
     return render(request, "instagbotapp/help.html")
