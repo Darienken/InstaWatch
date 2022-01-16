@@ -22,7 +22,7 @@ class instabot(webdriver.Chrome):
         self.get("https://www.instagram.com/accounts/login")
         #waiting time for each action performed
         self.implicitly_wait(20)
-
+#a
     def login(self):#login method
         #set username
         self.username_login=self.find_element_by_name("username")
