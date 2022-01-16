@@ -7,9 +7,9 @@ class instabot(webdriver.Chrome):
     def __init__(self, user_url):
         
         #setting configurations
+        driver_path=os.environ.get("CHROMEDRIVER_PATH")
         self.chrome_configs=webdriver.ChromeOptions()
         self.chrome_configs.add_experimental_option("excludeSwitches",["enable-logging"])
-        driver_path=os.environ.get("CHROMEDRIVER_PATH")
         self.chrome_configs.add_argument("--headless")
         self.chrome_configs.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
         self.chrome_configs.add_argument("--disable-dev-shm-usage")
@@ -38,25 +38,40 @@ class instabot(webdriver.Chrome):
 
     def get_userdata(self):#method to get data from users 
         users={}
-        self.login()
-        if self.find_element_by_class_name("olLwo").get_attribute("innerHTML") == "Save Your Login Info?" or self.find_element_by_class_name("olLwo").get_attribute("innerHTML") == "¿Guardar tu información de inicio de sesión?":
-            self.get(self.url)
-        container_descript=self.find_element_by_class_name("wW3k-")
-        self.username_container=container_descript.find_element_by_class_name("XBGH5")
-        self.username = self.username_container.find_element_by_tag_name(
-            "h2"
-        ).get_attribute("innerHTML")
+        try:
+            container_descript=self.find_element_by_class_name("wW3k-")
+            self.username_container=container_descript.find_element_by_class_name("XBGH5")
+            self.username = self.username_container.find_element_by_tag_name(
+                "h2"
+            ).get_attribute("innerHTML")
+            followers_container=container_descript.find_element_by_class_name("k9GMp")
+            followers_list=followers_container.find_elements_by_class_name("g47SY")
+            follow_list=[]
+            for follower in followers_list:
+                follow_list.append(follower.get_attribute("innerHTML"))
+                about_user=container_descript.find_element_by_class_name("QGPIr")
+                phone_number=self.get_phonenumber(about_user.text)
+                users.update({self.username:[follow_list,about_user.text,phone_number]})
+        except:
+            self.login()
+            if self.find_element_by_class_name("olLwo").get_attribute("innerHTML") == "Save Your Login Info?" or self.find_element_by_class_name("olLwo").get_attribute("innerHTML") == "¿Guardar tu información de inicio de sesión?":
+                self.get(self.url)
+            container_descript=self.find_element_by_class_name("wW3k-")
+            self.username_container=container_descript.find_element_by_class_name("XBGH5")
+            self.username = self.username_container.find_element_by_tag_name(
+                "h2"
+            ).get_attribute("innerHTML")
 
-        followers_container=container_descript.find_element_by_class_name("k9GMp")
-        followers_list=followers_container.find_elements_by_class_name("g47SY")
-        follow_list=[]
-        for follower in followers_list:
-            follow_list.append(follower.get_attribute("innerHTML"))
+            followers_container=container_descript.find_element_by_class_name("k9GMp")
+            followers_list=followers_container.find_elements_by_class_name("g47SY")
+            follow_list=[]
+            for follower in followers_list:
+                follow_list.append(follower.get_attribute("innerHTML"))
 
-        about_user=container_descript.find_element_by_class_name("QGPIr")
+            about_user=container_descript.find_element_by_class_name("QGPIr")
 
-        phone_number=self.get_phonenumber(about_user.text)
-        users.update({self.username:[follow_list,about_user.text,phone_number]})
+            phone_number=self.get_phonenumber(about_user.text)
+            users.update({self.username:[follow_list,about_user.text,phone_number]})
         return users
     
     def get_phonenumber(self, text):#method to get phone number
@@ -66,19 +81,3 @@ class instabot(webdriver.Chrome):
         for number in phone_number:
             phone_numbers+=f"{number.group()} - "
         return phone_numbers
-
-"""container_descript=self.find_element_by_class_name("wW3k-")
-        self.username_container=container_descript.find_element_by_class_name("XBGH5")
-        self.username = self.username_container.find_element_by_tag_name(
-            "h2"
-        ).get_attribute("innerHTML")
-        followers_container=container_descript.find_element_by_class_name("k9GMp")
-        followers_list=followers_container.find_elements_by_class_name("g47SY")
-        follow_list=[]
-        for follower in followers_list:
-            follow_list.append(follower.get_attribute("innerHTML"))
-
-        about_user=container_descript.find_element_by_class_name("QGPIr")
-
-        phone_number=self.get_phonenumber(about_user.text)
-        users.update({self.username:[follow_list,about_user.text,phone_number]})"""
