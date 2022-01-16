@@ -1,11 +1,6 @@
 from selenium import webdriver
 import os
 import re
-"""
-self.chrome_configs.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-self.chrome_configs.add_argument("--disable-dev-shm-usage")
-self.chrome_configs.add_argument("--no-sandbox")
-"""
 
 class instabot(webdriver.Chrome):
     #__init__(username) recives username and loads the user page
@@ -15,6 +10,9 @@ class instabot(webdriver.Chrome):
         self.chrome_configs=webdriver.ChromeOptions()
         self.chrome_configs.add_experimental_option("excludeSwitches",["enable-logging"])
         self.chrome_configs.add_argument("--headless")
+        self.chrome_configs.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+        self.chrome_configs.add_argument("--disable-dev-shm-usage")
+        self.chrome_configs.add_argument("--no-sandbox")
         #calling __init__ father and passing throught arguments the configurations and driver path
         super().__init__(driver_path,options=self.chrome_configs)
         #loading user page
