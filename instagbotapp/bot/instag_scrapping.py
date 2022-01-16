@@ -21,7 +21,7 @@ class instabot(webdriver.Chrome):
         self.url=f"https://www.instagram.com/{user_url}/"
         self.get(self.url)
         #waiting time for each action performed
-        self.implicitly_wait(10)
+        self.implicitly_wait(20)
 
     def login(self):#login method
         #set username
@@ -38,25 +38,43 @@ class instabot(webdriver.Chrome):
 
     def get_userdata(self):#method to get data from users 
         users={}
-        self.login()
-        if self.find_element_by_class_name("olLwo").get_attribute("innerHTML") == "Save Your Login Info?" or self.find_element_by_class_name("olLwo").get_attribute("innerHTML") == "¿Guardar tu información de inicio de sesión?":
-            self.get(self.url)
-        container_descript=self.find_element_by_class_name("wW3k-")
-        self.username_container=container_descript.find_element_by_class_name("XBGH5")
-        self.username = self.username_container.find_element_by_tag_name(
+        try:
+            container_descript=self.find_element_by_class_name("wW3k-")
+            self.username_container=container_descript.find_element_by_class_name("XBGH5")
+            self.username = self.username_container.find_element_by_tag_name(
             "h2"
-        ).get_attribute("innerHTML")
+            ).get_attribute("innerHTML")
+            followers_container=container_descript.find_element_by_class_name("k9GMp")
+            followers_list=followers_container.find_elements_by_class_name("g47SY")
+            follow_list=[]
+            
+            for follower in followers_list:
+                follow_list.append(follower.get_attribute("innerHTML"))
+            
+            about_user=container_descript.find_element_by_class_name("QGPIr")
+            phone_number=self.get_phonenumber(about_user.text)
+            users.update({self.username:[follow_list,about_user.text,phone_number]})
+        except:
+            self.login()
+            
+            if self.find_element_by_class_name("olLwo").get_attribute("innerHTML") == "Save Your Login Info?" or self.find_element_by_class_name("olLwo").get_attribute("innerHTML") == "¿Guardar tu información de inicio de sesión?":
+                self.get(self.url)
+            container_descript=self.find_element_by_class_name("wW3k-")
+            self.username_container=container_descript.find_element_by_class_name("XBGH5")
+            self.username = self.username_container.find_element_by_tag_name(
+                "h2"
+            ).get_attribute("innerHTML")
 
-        followers_container=container_descript.find_element_by_class_name("k9GMp")
-        followers_list=followers_container.find_elements_by_class_name("g47SY")
-        follow_list=[]
-        for follower in followers_list:
-            follow_list.append(follower.get_attribute("innerHTML"))
+            followers_container=container_descript.find_element_by_class_name("k9GMp")
+            followers_list=followers_container.find_elements_by_class_name("g47SY")
+            follow_list=[]
+            for follower in followers_list:
+                follow_list.append(follower.get_attribute("innerHTML"))
 
-        about_user=container_descript.find_element_by_class_name("QGPIr")
+            about_user=container_descript.find_element_by_class_name("QGPIr")
 
-        phone_number=self.get_phonenumber(about_user.text)
-        users.update({self.username:[follow_list,about_user.text,phone_number]})
+            phone_number=self.get_phonenumber(about_user.text)
+            users.update({self.username:[follow_list,about_user.text,phone_number]})
         return users
     
     def get_phonenumber(self, text):#method to get phone number
@@ -67,18 +85,3 @@ class instabot(webdriver.Chrome):
             phone_numbers+=f"{number.group()} - "
         return phone_numbers
 
-"""try
-container_descript=self.find_element_by_class_name("wW3k-")
-self.username_container=container_descript.find_element_by_class_name("XBGH5")
-self.username = self.username_container.find_element_by_tag_name(
-"h2"
-).get_attribute("innerHTML")
-followers_container=container_descript.find_element_by_class_name("k9GMp")
-followers_list=followers_container.find_elements_by_class_name("g47SY")
-follow_list=[]
-for follower in followers_list:
-follow_list.append(follower.get_attribute("innerHTML"))
-about_user=container_descript.find_element_by_class_name("QGPIr")
-phone_number=self.get_phonenumber(about_user.text)
-users.update({self.username:[follow_list,about_user.text,phone_number]})
-except:"""
