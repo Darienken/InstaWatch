@@ -5,7 +5,7 @@ import re
 class instabot(webdriver.Chrome):
     #__init__(username) recives username and loads the user page
     def __init__(self, user_url):
-        driver_path=r"C:\Users\Vivi\OneDrive\Escritorio\Didackmon_User001\thewise king hacka\Python\Python Senior Developer myself\selenium_instagram\instagbotapp\bot\driver\chromedriver.exe"
+        driver_path=os.environ.get("CHROMEDRIVER_PATH")
         #setting configurations
         self.chrome_configs=webdriver.ChromeOptions()
         self.chrome_configs.add_experimental_option("excludeSwitches",["enable-logging"])
