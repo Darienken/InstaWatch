@@ -2,7 +2,6 @@ from selenium import webdriver
 import os
 import re
 
-"""driver_path=rC:\Users\Vivi\OneDrive\Escritorio\Didackmon_User001\thewise king hacka\Python\Python Senior Developer myself\selenium_instagram\instagbotapp\bot\driver\chromedriver.exe"""
 class instabot(webdriver.Chrome):
     #__init__(username) recives username and loads the user page
     def __init__(self, user_url):
