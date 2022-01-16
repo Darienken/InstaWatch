@@ -33,7 +33,7 @@ class instabot(webdriver.Chrome):
         self.passwrd_login.click()
         self.passwrd_login.send_keys(os.environ.get("INSTA_PASS"))
         #login!
-        self.btn_login=self.find_element_by_xpath("/html/body/div[1]/section/main/div/div/div[1]/div/form/div/div[3]/button/div")
+        self.btn_login=self.find_element_by_xpath("/html/body/div[1]/section/main/article/div[2]/div[1]/div/form/div/div[3]/button/div")
         self.btn_login.click()
 
     def get_userdata(self):#method to get data from users 
