@@ -36,43 +36,41 @@ class instabot(webdriver.Chrome):
 
     def get_userdata(self):#method to get data from users 
         users={}
-        try:
-            container_descript=self.find_element_by_class_name("wW3k-")
-            self.username_container=container_descript.find_element_by_class_name("XBGH5")
-            self.username = self.username_container.find_element_by_tag_name(
-                "h2"
-            ).get_attribute("innerHTML")
-            followers_container=container_descript.find_element_by_class_name("k9GMp")
-            followers_list=followers_container.find_elements_by_class_name("g47SY")
-            follow_list=[]
-            for follower in followers_list:
-                follow_list.append(follower.get_attribute("innerHTML"))
+        container_descript=self.find_element_by_class_name("wW3k-")
+        self.username_container=container_descript.find_element_by_class_name("XBGH5")
+        self.username = self.username_container.find_element_by_tag_name(
+            "h2"
+        ).get_attribute("innerHTML")
+        followers_container=container_descript.find_element_by_class_name("k9GMp")
+        followers_list=followers_container.find_elements_by_class_name("g47SY")
+        follow_list=[]
+        for follower in followers_list:
+            follow_list.append(follower.get_attribute("innerHTML"))
 
-            about_user=container_descript.find_element_by_class_name("QGPIr")
+        about_user=container_descript.find_element_by_class_name("QGPIr")
 
-            phone_number=self.get_phonenumber(about_user.text)
-            users.update({self.username:[follow_list,about_user.text,phone_number]})
-        except:
-            self.login()
-            if self.find_element_by_class_name("olLwo").get_attribute("innerHTML") == "Save Your Login Info?" or self.find_element_by_class_name("olLwo").get_attribute("innerHTML") == "¿Guardar tu información de inicio de sesión?":
-                self.get(self.url)
-            container_descript=self.find_element_by_class_name("wW3k-")
-            self.username_container=container_descript.find_element_by_class_name("XBGH5")
-            self.username = self.username_container.find_element_by_tag_name(
-                "h2"
-            ).get_attribute("innerHTML")
+        phone_number=self.get_phonenumber(about_user.text)
+        users.update({self.username:[follow_list,about_user.text,phone_number]})
+        """self.login()
+        if self.find_element_by_class_name("olLwo").get_attribute("innerHTML") == "Save Your Login Info?" or self.find_element_by_class_name("olLwo").get_attribute("innerHTML") == "¿Guardar tu información de inicio de sesión?":
+            self.get(self.url)
+        container_descript=self.find_element_by_class_name("wW3k-")
+        self.username_container=container_descript.find_element_by_class_name("XBGH5")
+        self.username = self.username_container.find_element_by_tag_name(
+            "h2"
+        ).get_attribute("innerHTML")
 
-            followers_container=container_descript.find_element_by_class_name("k9GMp")
-            followers_list=followers_container.find_elements_by_class_name("g47SY")
-            follow_list=[]
-            for follower in followers_list:
-                follow_list.append(follower.get_attribute("innerHTML"))
+        followers_container=container_descript.find_element_by_class_name("k9GMp")
+        followers_list=followers_container.find_elements_by_class_name("g47SY")
+        follow_list=[]
+        for follower in followers_list:
+            follow_list.append(follower.get_attribute("innerHTML"))
 
-            about_user=container_descript.find_element_by_class_name("QGPIr")
+        about_user=container_descript.find_element_by_class_name("QGPIr")
 
-            phone_number=self.get_phonenumber(about_user.text)
-            users.update({self.username:[follow_list,about_user.text,phone_number]})
-        return users
+        phone_number=self.get_phonenumber(about_user.text)
+        users.update({self.username:[follow_list,about_user.text,phone_number]})
+        return users"""
     
     def get_phonenumber(self, text):#method to get phone number
         phone_pattern=re.compile(r"((\+593|593)? \d{2} \d{3} \d{4}|(\+593|593)?\d{7,10})")
