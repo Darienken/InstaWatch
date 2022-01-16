@@ -17,6 +17,7 @@ pandas==1.3.5
 pycparser==2.21
 pyOpenSSL==21.0.0
 python-dateutil==2.8.2
+python-decouple==3.5
 pytz==2021.3
 selenium==4.1.0
 six==1.16.0
